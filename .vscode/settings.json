@@ -1,0 +1,40 @@
+{
+    "cSpell.words": [
+        "aout",
+        "arrayref",
+        "bincode",
+        "blockhash",
+        "bumpalo",
+        "bytemuck",
+        "cdylib",
+        "couterparty",
+        "curr",
+        "getrandom",
+        "keypair",
+        "lamports",
+        "powf",
+        "Pubkey",
+        "pyth",
+        "repr",
+        "serde",
+        "solana",
+        "struct",
+        "sysvar",
+        "thiserror",
+        "ratex",
+        "msol"
+    ],
+    "rust-analyzer.linkedProjects": [
+        "packages/integration-tests/Cargo.toml"
+    ],
+    "rust-analyzer.cargo.allFeatures": false,
+    "editor.formatOnSave": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always"
+}

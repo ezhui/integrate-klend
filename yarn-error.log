@@ -1,0 +1,49 @@
+Arguments: 
+  /Users/hui/.nvm/versions/node/v20.3.1/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /Users/hui/.nvm/versions/node/v20.3.1/bin:/Users/hui/Library/Python/3.9/bin:/Users/hui/Library/pnpm:/Users/hui/aptos/move/target/release:/Users/hui/aptos/bin/:/Users/hui/Library/Python/3.8/bin:/Applications/CMake.app/Contents/bin:/usr/local/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@1.1/bin:/Users/hui/.local/share/solana/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/Users/hui/.local/share/solana/install/active_release/bin:/Applications/Yunshu.app/Contents/Public:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/go/bin:/Users/hui/.cargo/bin:/Users/hui/.foundry/bin:/Users/hui/.local/bin:/Users/hui/Library/Python/3.11/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/hui/go/bin
+
+Yarn version: 
+  1.22.11
+
+Node version: 
+  20.3.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: certificate has expired
+      at TLSSocket.onConnectSecure (node:_tls_wrap:1568:34)
+      at TLSSocket.emit (node:events:511:28)
+      at TLSSocket._finishInit (node:_tls_wrap:985:8)
+      at ssl.onhandshakedone (node:_tls_wrap:771:12)
+
+npm manifest: 
+  {
+    "license": "ISC",  
+    "scripts": {
+      "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+      "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check"
+    },
+    "dependencies": {
+      "@coral-xyz/anchor": "^0.30.1"
+    },
+    "devDependencies": {
+      "chai": "^4.3.4",
+      "mocha": "^9.0.3",
+      "ts-mocha": "^10.0.0",
+      "@types/bn.js": "^5.1.0",
+      "@types/chai": "^4.3.0",
+      "@types/mocha": "^9.0.0",
+      "typescript": "^4.3.5",
+      "prettier": "^2.6.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
