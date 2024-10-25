@@ -5,7 +5,9 @@ mod utilities;
 
 use context::{MintType, RateXTestContext};
 use solana_program_test::*;
-use utilities::kamino::{JITOSOL_MINT, MAIN_MARKET};
+use utilities::kamino::{
+    dump_reserve, JITOSOL_MINT, MAIN_MARKET, RESERVE_JITOSOL_STATE, RESERVE_SOL_STATE,
+};
 
 #[tokio::test]
 async fn test_kamino() {
@@ -16,7 +18,7 @@ async fn test_kamino() {
 
     alice.klend_init_user_metadata().await;
     let obligation = alice.klend_init_obligation(&MAIN_MARKET, 0, 0).await;
-    alice.klend_refresh_reserve().await;
+    alice.klend_refresh_reserve(&RESERVE_JITOSOL_STATE).await;
     alice.klend_refresh_obligation(&obligation, &vec![]).await;
 
     rtc.mint_token_by_type(alice, 500_000_000, MintType::JitoSol)
@@ -28,6 +30,9 @@ async fn test_kamino() {
         .await;
 
     alice.klend_deposit_obligation_collateral(&obligation).await;
+
+    alice.klend_refresh_reserve(&RESERVE_SOL_STATE).await;
+    dump_reserve(&RESERVE_SOL_STATE);
 
     // Fail to borrow liquidity ...
     alice

@@ -119,10 +119,10 @@ impl UserTestContext {
         obligation
     }
 
-    pub async fn klend_refresh_reserve(&self) {
+    pub async fn klend_refresh_reserve(&self, reserve: &Pubkey) {
         let context: &mut ProgramTestContext = &mut self.context.borrow_mut();
 
-        let instruction = compose_klend_refresh_reserve_ix(&RESERVE_JITOSOL_STATE, &MAIN_MARKET);
+        let instruction = compose_klend_refresh_reserve_ix(reserve, &MAIN_MARKET);
 
         process_instructions(context, &self.user, &vec![instruction]).await;
     }

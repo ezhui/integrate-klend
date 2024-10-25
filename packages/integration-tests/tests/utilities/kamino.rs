@@ -6,7 +6,12 @@ use anchor_lang::solana_program::hash::hash;
 use anchor_lang::solana_program::pubkey;
 use anchor_lang::{prelude::AccountMeta, system_program};
 use anchor_spl::token::spl_token;
+use borsh::BorshDeserialize;
+use fixed::types::U68F60 as Fraction;
+use klend::state::Reserve;
 use solana_program_test::ProgramTest;
+
+use crate::utilities::helper::read_account_data;
 
 pub const KLEND_PROGRAM_ID: Pubkey = pubkey!("KLend2g3cP87fffoy8q1mQqGKjrxjC8boSyAYavgmjD");
 pub const KFARM_PROGRAM_ID: Pubkey = pubkey!("FarmsPZpWu9i7Kky8tPN37rs2TpmMrAZrC7S7vJa91Hr");
@@ -162,6 +167,29 @@ pub fn load_kamino_fixtures(pt: &mut ProgramTest) {
     );
 
     println!("Load kamino fixtures.")
+}
+
+pub fn dump_reserve(address: &Pubkey) {
+    let filename = format!("{}.bin", address);
+    let data = read_account_data(&filename);
+    let reserve = Reserve::try_from_slice(&data[8..]).unwrap(); // Skip discriminator !
+
+    // println!("lending market {:?}", reserve.lending_market);
+    // println!("reserve {:#?}", reserve.liquidity);
+
+    // let reserve_liquidity_supply = Fraction::from(reserve.liquidity.available_amount)
+    //     + Fraction::from_bits(reserve.liquidity.borrowed_amount_sf)
+    //     - Fraction::from_bits(reserve.liquidity.accumulated_protocol_fees_sf)
+    //     - Fraction::from_bits(reserve.liquidity.accumulated_referrer_fees_sf)
+    //     - Fraction::from_bits(reserve.liquidity.pending_referrer_fees_sf);
+
+    // println!("reserve_liquidity_supply = {}", reserve_liquidity_supply);
+
+    let reserve_liquidity_borrowed_f = Fraction::from_bits(reserve.liquidity.borrowed_amount_sf);
+    println!(
+        "reserve_liquidity_borrowed_f = {}, limit = {}",
+        reserve_liquidity_borrowed_f, reserve.config.borrow_limit
+    );
 }
 
 pub fn compose_klend_init_user_metadata_ix(

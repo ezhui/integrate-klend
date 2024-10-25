@@ -46,6 +46,12 @@ pub fn get_program(pid: Pubkey) -> Program<Rc<Keypair>> {
     client.program(pid).unwrap()
 }
 
+pub fn read_account_data(filename: &str) -> Vec<u8> {
+    read_file(find_file(filename).unwrap_or_else(|| {
+        panic!("Unable to load {}", filename);
+    }))
+}
+
 pub fn add_mint(
     pt: &mut ProgramTest,
     mint_address: Pubkey,
